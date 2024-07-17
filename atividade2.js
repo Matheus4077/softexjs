@@ -1,4 +1,5 @@
-
+ const prompt = require("prompt-sync")({sigint: true})
+ var colocacao = prompt("Diga sua posição " )
 const posicoes = ["Ouro","Prata","Bronze","NADA!!!"]
 
 function medalhaDeAcordoComPosicao(numero) 
@@ -18,4 +19,5 @@ function medalhaDeAcordoComPosicao(numero)
 
 } 
 
-let medalha = medalhaDeAcordoComPosicao(4)
+let medalha = medalhaDeAcordoComPosicao(colocacao)
+
