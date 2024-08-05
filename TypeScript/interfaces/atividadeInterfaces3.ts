@@ -5,11 +5,9 @@ interface Task{
 
 function taskStatus(task:Task){
     if(task.completed){
-        return `Parabéns! Você passou`
+        return `${task.title}: Tarefa Concluida `
     }
-    else{
-        return `Refazer a Atividade`
-    }
+        return `${task.title}: Tarefa não Concluida, refazer!`
 }
 const task1:Task = {title:`Task1`, completed:true}
 const task2:|Task = {title:`Task2`}
