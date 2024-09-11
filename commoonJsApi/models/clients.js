@@ -1,12 +1,12 @@
 const clients = [
     {
-        Id:1,
+        id:1,
         name:"Matheus",
     },
     {
         id:2,
         name:"Tiago",
-    }
+    },
 ];
 
 module.exports = {

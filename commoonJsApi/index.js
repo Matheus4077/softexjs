@@ -27,11 +27,13 @@ app.get('/clients/:id', (req, res) =>{
 
 //criando um novo cliente na rota / cliente utilizando o metodo send e verbo HTTP POST 
 app.post('/clients',(req, res) => {
-    const name = req.body;
-    const id = clients[clients.length - 1].id + 1;
+    const {name} = req.body;
+    const id = clients.length + 1;
     clients.push({id, name});
     res.send('Client added successfully');
 });
+
+
 
 //servidor rodando na porta 3000
 app.listen(3000,() => {
