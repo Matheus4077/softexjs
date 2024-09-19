@@ -1,41 +1,19 @@
-//inportando express
 const express = require('express');
-
-//iniciando o express
 const app = express();
-const {clients} = require('./models/clients');
+const {conection} = require('./database/conection');
+const {router} = require('./src/routers/clientRouters');
 
-app.get('/clients', (req,res) => {
-    res.send(clients)
-});
+app.user(express.json());
+app.use(router);
 
-//utilizando o metodo json do express para fazer o parse do body da requisiçao 
-app.use(express.json());
+app.listem(3000, () => {
+    conection.connect((err) =>{
+        if (err){
+            console.error('error connecting to database:', err.stack);
+            return;
+        }
+        console.log('connected to database with ID', conection.threadId);
+    });
 
-//rota raiz 
- app.get('/',(req,res)=> {
-    res.send("hello word");
-});
-
-//renderizando um cliente especifico na rota /cliente/:id utilizado 
-app.get('/clients/:id', (req, res) =>{
-    const { id } = req.params;
-    const client = clients.find((value) => value.id === Number (id));
-    if(!client) return res.send('Client not found');
-    res.send(client);
-});
-
-//criando um novo cliente na rota / cliente utilizando o metodo send e verbo HTTP POST 
-app.post('/clients',(req, res) => {
-    const {name} = req.body;
-    const id = clients.length + 1;
-    clients.push({id, name});
-    res.send('Client added successfully');
-});
-
-
-
-//servidor rodando na porta 3000
-app.listen(3000,() => {
-    console.log('Server is running on port 3000');
+    console.log('server running on port 3000');
 });
